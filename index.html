@@ -1,0 +1,1508 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AI Automation Developer portfolio specializing in n8n workflows, AI agents, API integrations and RAG.">
+  <title>AI Automation Developer | Portfolio</title>
+
+  <style>
+    /* =================================
+       1. GLOBAL STYLES
+    ================================= */
+    :root {
+      --bg: #080d1c;
+      --surface: #10182b;
+      --surface-light: #151f37;
+      --border: rgba(164, 180, 220, 0.16);
+      --text: #f4f7ff;
+      --muted: #a6b3cc;
+      --purple: #a78bfa;
+      --cyan: #67e8f9;
+      --gradient: linear-gradient(110deg, #a78bfa, #67e8f9);
+      --radius: 20px;
+      --max-width: 1120px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
+
+    body {
+      background:
+        radial-gradient(ellipse at 85% 0%, #251747 0%, transparent 34%),
+        radial-gradient(ellipse at 0% 35%, #0b3040 0%, transparent 28%),
+        var(--bg);
+      color: var(--text);
+      font-family: Inter, "Segoe UI", Arial, sans-serif;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button, input, textarea {
+      font: inherit;
+    }
+
+    button, a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button:focus-visible, a:focus-visible,
+    input:focus-visible, textarea:focus-visible {
+      outline: 2px solid var(--cyan);
+      outline-offset: 4px;
+    }
+
+    ::selection {
+      background: var(--purple);
+      color: #080d1c;
+    }
+
+    .container {
+      width: min(var(--max-width), 90%);
+      margin-inline: auto;
+    }
+
+    .section {
+      padding: 100px 0;
+    }
+
+    .section-label {
+      color: var(--cyan);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.15;
+      letter-spacing: -1.5px;
+      margin: 12px 0 18px;
+    }
+
+    .section-description {
+      color: var(--muted);
+      max-width: 680px;
+    }
+
+    .gradient-text {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .section-heading {
+      margin-bottom: 38px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-height: 48px;
+      padding: 12px 20px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: var(--text);
+      font-weight: 700;
+      font-size: 0.92rem;
+      cursor: pointer;
+      transition: 0.25s ease;
+    }
+
+    .btn-primary {
+      border: 0;
+      background: linear-gradient(110deg, #875cf5, #168eac);
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      border-color: var(--cyan);
+      box-shadow: 0 10px 30px #0003;
+    }
+
+    .card {
+      background: linear-gradient(
+        145deg,
+        rgba(19, 29, 51, 0.95),
+        rgba(12, 19, 36, 0.95)
+      );
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 26px;
+      transition: transform 0.25s, border-color 0.25s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: #a78bfa70;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    /* =================================
+       2. NAVIGATION
+    ================================= */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(8, 13, 28, 0.88);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      min-height: 76px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 1rem;
+      font-weight: 900;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+    }
+
+    .logo span {
+      color: var(--cyan);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 27px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: 0.88rem;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--cyan);
+    }
+
+    .menu-toggle {
+      display: none;
+      color: var(--text);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      width: 43px;
+      height: 43px;
+      font-size: 1.35rem;
+      cursor: pointer;
+    }
+
+    /* =================================
+       3. HERO
+    ================================= */
+    .hero {
+      min-height: 690px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: center;
+      gap: 55px;
+      padding-top: 75px;
+      padding-bottom: 85px;
+    }
+
+    .availability {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 7px 13px;
+      border: 1px solid var(--border);
+      background: #10182b;
+      border-radius: 30px;
+      color: #c7d4e9;
+      font-size: 0.8rem;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      background: #6ee7b7;
+      border-radius: 50%;
+      box-shadow: 0 0 12px #6ee7b777;
+    }
+
+    .hero h1 {
+      margin: 24px 0;
+      font-size: clamp(2.8rem, 5.4vw, 5rem);
+      line-height: 1.05;
+      letter-spacing: -3px;
+    }
+
+    .hero-description {
+      color: var(--muted);
+      font-size: 1.08rem;
+      max-width: 560px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 13px;
+      margin-top: 30px;
+    }
+
+    .hero-tags {
+      margin-top: 27px;
+      font-size: 0.85rem;
+      color: #c1cce0;
+    }
+
+    .hero-tags span {
+      color: var(--cyan);
+      margin: 0 5px;
+    }
+
+    /* Decorative workflow illustration */
+    .workflow-visual {
+      position: relative;
+      padding: 27px;
+      border-radius: 25px;
+      background: linear-gradient(145deg, #172340, #0c1427);
+      border: 1px solid #66769b45;
+      box-shadow: 0 25px 100px #0005;
+      isolation: isolate;
+    }
+
+    .workflow-visual::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(
+        130deg,
+        #a78bfa99,
+        #67e8f988,
+        transparent 75%
+      );
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .visual-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 0.76rem;
+      margin-bottom: 25px;
+    }
+
+    .visual-status {
+      color: #86efac;
+    }
+
+    .flow-node {
+      background: #0b1223;
+      border: 1px solid #344462;
+      border-radius: 14px;
+      padding: 16px 10px;
+      text-align: center;
+      min-height: 100px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .flow-icon {
+      font-size: 1.6rem;
+      color: var(--cyan);
+    }
+
+    .flow-node strong {
+      font-size: 0.87rem;
+    }
+
+    .flow-node small {
+      color: var(--muted);
+      font-size: 0.75rem;
+    }
+
+    .flow-row {
+      display: grid;
+      grid-template-columns: 1fr 26px 1fr;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .flow-arrow {
+      color: var(--cyan);
+      text-align: center;
+      font-size: 1.4rem;
+    }
+
+    .flow-down {
+      text-align: center;
+      padding: 9px;
+      color: var(--purple);
+    }
+
+    .integration-chips {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 13px;
+    }
+
+    .integration-chips span {
+      padding: 10px 5px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--muted);
+      font-size: 0.72rem;
+      text-align: center;
+    }
+
+    /* =================================
+       4. ABOUT
+    ================================= */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .about-card h3 {
+      margin: 12px 0 10px;
+      font-size: 1.2rem;
+    }
+
+    .about-card p {
+      color: var(--muted);
+    }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      color: var(--cyan);
+      font-size: 1.4rem;
+      background: #67e8f912;
+      border: 1px solid #67e8f940;
+    }
+
+    /* =================================
+       5. SKILLS
+    ================================= */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .skill-card {
+      padding: 23px;
+    }
+
+    .skill-top {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      margin-bottom: 12px;
+    }
+
+    .skill-icon {
+      width: 43px;
+      height: 43px;
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      color: var(--purple);
+      background: #a78bfa14;
+      border: 1px solid #a78bfa40;
+      font-size: 1.25rem;
+    }
+
+    .skill-card h3 {
+      font-size: 1rem;
+    }
+
+    .skill-card p {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    /* =================================
+       6. PROJECTS
+    ================================= */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+    }
+
+    .project-card {
+      overflow: hidden;
+      padding: 18px;
+    }
+
+    .project-image {
+      height: 210px;
+      position: relative;
+      overflow:scroll;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 10px;
+      border-radius: 13px;
+      border: 1px dashed #596a8a;
+      background:
+        radial-gradient(circle at 30% 20%, #5b21b640, transparent 35%),
+        linear-gradient(135deg, #171d3a, #0a2534);
+      margin-bottom: 23px;
+    }
+
+    .project-image .placeholder-icon {
+      font-size: 2.3rem;
+      color: var(--cyan);
+      margin-bottom: 8px;
+    }
+
+    .project-image strong {
+      display: block;
+      font-size: 0.9rem;
+    }
+
+    .project-image span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.76rem;
+      margin-top: 4px;
+    }
+
+    /* Replace the placeholder with your actual screenshot:
+       <img src="images/my-workflow.png" alt="n8n workflow screenshot">
+    */
+    .project-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 10px;
+    }
+
+    .project-number {
+      color: var(--cyan);
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+    }
+
+    .project-card h3 {
+      font-size: 1.3rem;
+      margin: 8px 0 12px;
+    }
+
+    .project-card p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+    }
+
+    .project-card p strong {
+      color: #e4eaff;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 16px 0;
+    }
+
+    .tag {
+      color: #d5dff4;
+      background: #1a2640;
+      border: 1px solid var(--border);
+      padding: 4px 10px;
+      border-radius: 50px;
+      font-size: 0.75rem;
+    }
+
+    .project-link {
+      display: inline-block;
+      margin-top: 6px;
+      color: var(--cyan);
+      font-size: 0.87rem;
+      font-weight: 700;
+    }
+
+    .project-link:hover {
+      color: var(--purple);
+    }
+
+    .edit-note {
+      color: #fcd34d !important;
+      font-size: 0.8rem !important;
+      padding: 10px 12px;
+      background: #fcd34d0b;
+      border: 1px solid #fcd34d28;
+      border-radius: 9px;
+    }
+
+    /* =================================
+       7. WORK PROCESS
+    ================================= */
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+    }
+
+    .process-card {
+      border-top: 2px solid var(--purple);
+      border-radius: 0 0 15px 15px;
+      padding: 21px 17px;
+      background: #111a30;
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      border-left: 1px solid var(--border);
+    }
+
+    .process-number {
+      color: var(--cyan);
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .process-card h3 {
+      margin: 10px 0;
+      font-size: 1.05rem;
+    }
+
+    .process-card p {
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    /* =================================
+       8. CONTACT
+    ================================= */
+    .contact-box {
+      padding: 45px;
+      display: grid;
+      grid-template-columns: 1fr 0.9fr;
+      gap: 35px;
+      background: linear-gradient(120deg, #191536, #0d2636);
+      border: 1px solid #7161a04d;
+      border-radius: 25px;
+    }
+
+    .contact-box h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.15;
+      margin: 12px 0 17px;
+    }
+
+    .contact-box p {
+      color: var(--muted);
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      justify-content: center;
+    }
+
+    .contact-link {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #0a1222a8;
+      transition: 0.2s;
+    }
+
+    .contact-link:hover {
+      border-color: var(--cyan);
+      transform: translateX(3px);
+    }
+
+    .contact-link span:first-child {
+      font-weight: 700;
+    }
+
+    .contact-link span:last-child {
+      color: var(--cyan);
+    }
+
+    .contact-note {
+      margin-top: 14px;
+      font-size: 0.78rem;
+    }
+
+    /* =================================
+       9. FOOTER & ANIMATIONS
+    ================================= */
+    .footer {
+      padding: 27px 0;
+      margin-top: 60px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    .footer a {
+      color: var(--cyan);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    /* =================================
+       10. RESPONSIVE
+    ================================= */
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        min-height: auto;
+      }
+
+      .hero-content {
+        max-width: 720px;
+      }
+
+      .workflow-visual {
+        width: 100%;
+        max-width: 600px;
+      }
+
+      .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .process-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .contact-box {
+        grid-template-columns: 1fr;
+        padding: 32px;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .section {
+        padding: 70px 0;
+      }
+
+      .nav-inner {
+        min-height: 68px;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        position: absolute;
+        left: 5%;
+        right: 5%;
+        top: 76px;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 10px;
+        background: #10182b;
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        box-shadow: 0 20px 50px #0006;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links a {
+        display: block;
+        padding: 12px;
+      }
+
+      .hero {
+        padding-top: 65px;
+        padding-bottom: 50px;
+      }
+
+      .hero h1 {
+        letter-spacing: -1.8px;
+      }
+
+      .about-grid,
+      .skills-grid,
+      .projects-grid,
+      .process-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .workflow-visual {
+        padding: 16px;
+      }
+
+      .flow-node {
+        padding: 12px 5px;
+        min-height: 90px;
+      }
+
+      .flow-node strong {
+        font-size: 0.78rem;
+      }
+
+      .flow-node small {
+        font-size: 0.68rem;
+      }
+
+      .integration-chips span {
+        font-size: 0.66rem;
+      }
+
+      .contact-box {
+        padding: 25px 19px;
+      }
+
+      .footer {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVIGATION -->
+  <header class="navbar">
+    <nav class="container nav-inner" aria-label="Main navigation">
+      <a href="#home" class="logo">
+        AI<span>.AUTOMATION</span>
+      </a>
+
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        aria-label="Toggle navigation"
+        aria-expanded="false"
+        aria-controls="navLinks"
+      >☰</button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#process">My Process</a></li>
+        <li><a href="#contact">Contact ↗</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="container hero" id="home">
+      <div class="hero-content">
+        <div class="availability">
+          <span class="status-dot"></span>
+          AI AUTOMATION DEVELOPER
+        </div>
+
+        <h1>
+          Turning repetitive tasks into
+          <span class="gradient-text">intelligent workflows.</span>
+        </h1>
+
+        <p class="hero-description">
+          I build practical automations with n8n and AI agents to help
+          businesses connect tools, organize information, and simplify
+          day-to-day operations.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#projects">
+            Explore My Projects <span>↓</span>
+          </a>
+          <a class="btn" href="#contact">
+            Let’s Connect <span>↗</span>
+          </a>
+        </div>
+
+        <div class="hero-tags">
+          n8n Workflows <span>•</span>
+          AI Agents <span>•</span>
+          API Integrations <span>•</span>
+          RAG
+        </div>
+      </div>
+
+      <!-- Decorative workflow illustration -->
+      <div class="workflow-visual reveal">
+        <div class="visual-header">
+          <span>WORKFLOW / OVERVIEW</span>
+          <span class="visual-status">● Workflow map</span>
+        </div>
+
+        <div class="flow-row">
+          <div class="flow-node">
+            <span class="flow-icon">⚡</span>
+            <strong>Trigger</strong>
+            <small>New event</small>
+          </div>
+
+          <div class="flow-arrow">→</div>
+
+          <div class="flow-node">
+            <span class="flow-icon">◇</span>
+            <strong>n8n Workflow</strong>
+            <small>Logic & routing</small>
+          </div>
+        </div>
+
+        <div class="flow-down">↓</div>
+
+        <div class="flow-row">
+          <div class="flow-node">
+            <span class="flow-icon">✳</span>
+            <strong>AI Agent</strong>
+            <small>Process context</small>
+          </div>
+
+          <div class="flow-arrow">→</div>
+
+          <div class="flow-node">
+            <span class="flow-icon">▦</span>
+            <strong>Action</strong>
+            <small>Update / respond</small>
+          </div>
+        </div>
+
+        <div class="integration-chips">
+          <span>API Connectors</span>
+          <span>Knowledge Retrieval</span>
+          <span>Data Handling</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div class="section-label">01 / About Me</div>
+          <h2 class="section-title">
+            Practical automation,<br>
+            <span class="gradient-text">built around your needs.</span>
+          </h2>
+          <p class="section-description">
+            I’m an AI Automation Developer specializing in n8n workflows
+            and AI agents. I help businesses automate repetitive tasks,
+            connect different tools, and streamline their operations using
+            practical AI-powered solutions.
+          </p>
+        </div>
+
+        <div class="about-grid">
+          <article class="card about-card reveal">
+            <div class="feature-icon">⌘</div>
+            <h3>What I Focus On</h3>
+            <p>
+              Organized workflows, useful integrations, and AI-assisted
+              processes designed to address clear business needs.
+            </p>
+          </article>
+
+          <article class="card about-card reveal">
+            <div class="feature-icon">◎</div>
+            <h3>How I Work</h3>
+            <p>
+              I focus on understanding requirements, building and testing
+              practical solutions, and maintaining clear communication
+              throughout the project.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section class="section" id="skills">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div class="section-label">02 / Skills & Expertise</div>
+          <h2 class="section-title">
+            Tools that turn ideas into <span class="gradient-text">workflows.</span>
+          </h2>
+          <p class="section-description">
+            My core areas of focus in AI automation and workflow development.
+          </p>
+        </div>
+
+        <div class="skills-grid">
+          <article class="card skill-card reveal">
+            <div class="skill-top">
+              <div class="skill-icon">◇</div>
+              <h3>n8n Workflow Automation</h3>
+            </div>
+            <p>
+              Building workflows using triggers, conditional logic,
+              data mapping, and connected services.
+            </p>
+          </article>
+
+          <article class="card skill-card reveal">
+            <div class="skill-top">
+              <div class="skill-icon">✳</div>
+              <h3>AI Agent Development</h3>
+            </div>
+            <p>
+              Creating AI agents that connect with tools and structured
+              data to support defined tasks.
+            </p>
+          </article>
+
+          <article class="card skill-card reveal">
+            <div class="skill-top">
+              <div class="skill-icon">⇄</div>
+              <h3>API Integrations</h3>
+            </div>
+            <p>
+              Connecting applications and services through APIs and
+              webhooks to exchange data.
+            </p>
+          </article>
+
+          <article class="card skill-card reveal">
+            <div class="skill-top">
+              <div class="skill-icon">▦</div>
+              <h3>Google Sheets Automation</h3>
+            </div>
+            <p>
+              Retrieving, organizing, and updating structured data
+              in automation workflows.
+            </p>
+          </article>
+
+          <article class="card skill-card reveal">
+            <div class="skill-top">
+              <div class="skill-icon">⌕</div>
+              <h3>RAG & Knowledge Assistants</h3>
+            </div>
+            <p>
+              Using relevant information from knowledge sources to
+              support context-aware AI responses.
+            </p>
+          </article>
+
+          <article class="card skill-card reveal">
+            <div class="skill-top">
+              <div class="skill-icon">☏</div>
+              <h3>AI Chatbot Workflows</h3>
+            </div>
+            <p>
+              Designing assistant workflows that retrieve information
+              and respond to defined user requests.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div class="section-label">03 / Featured Projects</div>
+          <h2 class="section-title">
+            Selected <span class="gradient-text">projects.</span>
+          </h2>
+          <p class="section-description">
+            A space to showcase practical work, workflow screenshots,
+            project explanations, and live demonstrations.
+          </p>
+        </div>
+
+        <div class="projects-grid">
+
+          <!-- PROJECT 1 -->
+          <article class="card project-card reveal">
+            <div class="project-image">
+               <!-- Replace this placeholder with your actual screenshot: -->
+              <!-- <img src="d:\52.PNG"
+                   alt="Order management n8n workflow"> -->
+              
+              <div>
+                <div class="placeholder-icon">
+                    <img src="images.png/52.PNG"
+                   alt="Order management n8n workflow"> 
+                   <img src="images.png/cu1.PNG"
+                   alt="Order management n8n workflow">
+                   <img src="images.png/cu2.PNG"
+                   alt="Order management n8n workflow">
+                   <img src="images.png/cu3.PNG"
+                   alt="Order management n8n workflow">
+                   <img src="images.png/cu4.PNG"
+                   alt="Order management n8n workflow">
+                   <img src="images.png/cus1.PNG"
+                   alt="Order management n8n workflow">
+                   <img src="images.png/cus2.PNG"
+                   alt="Order management n8n workflow">
+
+                </div>
+                <span>n8n + AI Agent + Google Sheets</span>
+              </div>
+            </div>
+
+            <div class="project-number">PROJECT 01</div>
+            <h3>AI-Powered Order Management</h3>
+
+            <p>
+              <strong>Problem:</strong> Managing product inquiries, checking stock availability, recording customer orders, and updating inventory manually can be time-consuming and may lead to errors or inconsistent records..
+            </p>
+            <p>
+              <strong>Solution:</strong> Developed an AI-powered e-commerce chatbot workflow using n8n and specialized AI agents. It checks product information and availability in Google Sheets, suggests available alternatives, collects order details after customer confirmation, records confirmed orders, and updates inventory following successful order creation.
+Technologies
+            </p>
+
+            <div class="tags">
+              <span class="tag">n8n</span>
+              <span class="tag">AI Agents</span>
+              <span class="tag">Google Sheets</span>
+              <span class="tag">Webhook</span>
+              <span class="tag">Workflow Automation</span>
+            </div>
+
+            <!-- <p class="edit-note">
+              Update this description to match your actual implementation.
+            </p> -->
+
+            <!-- Replace # with your real project URL -->
+            <!-- <a class="project-link" href="#contact">
+              Add Project Demo ↗
+            </a> -->
+          </article>
+
+          <!-- PROJECT 2 -->
+          <article class="card project-card reveal">
+            <div class="project-image">
+              <!-- Replace this placeholder with your actual screenshot:
+              <img src="images/rag-project.png"
+                   alt="RAG knowledge assistant pipeline">
+              -->
+              <div>
+                <div class="placeholder-icon"><img src="images.png/Untitled Design2.png"
+                   alt="Order management n8n workflow"></div>
+                <span>Knowledge Retrieval Pipeline</span>
+              </div>
+            </div>
+
+            <div class="project-number">PROJECT 02</div>
+            <h3>RAG Knowledge Assistant</h3>
+
+            <p>
+              <strong>Problem:</strong> Financial reports contain large amounts of information, making it time-consuming to find specific figures, compare quarterly results, and extract relevant insights manually.
+            </p>
+            <p>
+              <strong>Solution:</strong> Built an AI-powered RAG chatbot using n8n that retrieves relevant information from Apple's quarterly financial reports stored in Pinecone. It uses OpenAI embeddings and GPT-4.1 mini to answer questions with concise, report-based insights, identify the relevant quarter, and acknowledge when the available data is insufficient.
+Technologies
+            </p>
+
+            <div class="tags">
+              <span class="tag">RAG</span>
+              <span class="tag">Google Drive</span>
+              <span class="tag">Google Sheets</span>
+              <span class="tag">Pinecone</span>
+              <span class="tag">OpenAI</span>
+              <span class="tag">n8n</span>
+            </div>
+
+            <!-- <p class="edit-note">
+              Add the database, tools, and pipeline you actually used.
+            </p> -->
+
+            <!-- <a class="project-link" href="#contact">
+              Add Project Demo ↗
+            </a> -->
+          </article>
+
+          <!-- PROJECT 3 -->
+          <!-- <article class="card project-card reveal">
+            <div class="project-image">
+              <!-- Add your actual automation screenshot here 
+              <div>
+                <div class="placeholder-icon"><img src="images.png/5.PNG"
+                   alt="Order management n8n workflow"></div>
+                <span>Trigger → API → Action</span>
+              </div>
+            </div>
+
+            <div class="project-number">PROJECT 03</div>
+            <h3>Business Workflow Automation</h3>
+
+            <p>
+              <strong>Problem:</strong> Repetitive tasks can require
+              manual copying, checking, and follow-up.
+            </p>
+            <p>
+              <strong>Solution:</strong> An automation connecting
+              an event trigger, application APIs, and downstream actions.
+            </p>
+
+            <div class="tags">
+              <span class="tag">n8n</span>
+              <span class="tag">APIs</span>
+              <span class="tag">Webhooks</span>
+            </div>
+
+            <p class="edit-note">
+              Replace this example with a workflow you have built.
+            </p>
+
+            <a class="project-link" href="#contact">
+              Add Project Demo ↗
+            </a>
+          </article> -->
+
+          <!-- PROJECT 4 -->
+          
+
+<!-- PROJECT 4 -->
+<article class="card project-card reveal">
+  <div class="project-image">
+    <!-- Replace this with your actual workflow screenshot -->
+    <div>
+      <div class="placeholder-icon">
+        <img src="images.png/51.PNG"
+             alt="AI Personal Assistant n8n workflow">
+             <img src="images.png/super1.PNG"
+             alt="AI Personal Assistant n8n workflow">
+             <img src="images.png/supers1.PNG"
+             alt="AI Personal Assistant n8n workflow">
+             <img src="images.png/super2.PNG"
+             alt="AI Personal Assistant n8n workflow">
+             <img src="images.png/super3.PNG"
+             alt="AI Personal Assistant n8n workflow">
+             <img src="images.png/super4.PNG"
+             alt="AI Personal Assistant n8n workflow">
+             <img src="images.png/supers2.PNG"
+             alt="AI Personal Assistant n8n workflow">
+             <img src="images.png/supers3.PNG"
+             alt="AI Personal Assistant n8n workflow">
+             <img src="images.png/supers4.PNG"
+             alt="AI Personal Assistant n8n workflow">
+      </div>
+      <span>n8n + AI Agent + Google Integrations</span>
+    </div>
+  </div>
+
+  <div class="project-number">PROJECT 04</div>
+  <h3>AI Personal Assistant</h3>
+
+  <p>
+    <strong>Problem:</strong> Managing daily tasks, emails,
+    calendar events, image analysis, and social media content
+    across multiple tools can be time-consuming and repetitive.
+  </p>
+
+  <p>
+    <strong>Solution:</strong> An AI-powered personal assistant
+    built with n8n that receives text, voice messages, and images,
+    understands user requests, and executes tasks through
+    integrated services. It supports voice responses to voice
+    messages, analyzes images, manages Google Calendar events,
+    sends and receives emails through Gmail, generates social
+    media posts and stores them in Google Sheets, and performs
+    web searches using SerpAPI when requested.
+  </p>
+
+  <div class="tags">
+    <span class="tag">n8n</span>
+    <span class="tag">AI Agents</span>
+    <span class="tag">Voice & Image Processing</span>
+    <span class="tag">Google Calendar</span>
+    <span class="tag">Gmail</span>
+    <span class="tag">Google Sheets</span>
+    <span class="tag">SerpAPI</span>
+    <span class="tag">API Integration</span>
+  </div>
+
+  <p class="edit-note">
+    Future enhancement: Enable automated publishing of generated
+    social media posts directly to supported platforms.
+  </p>
+
+  <!-- Replace # with your real project demo URL -->
+  <!-- <a class="project-link" href="#contact">
+    Add Project Demo ↗
+  </a> -->
+</article>
+
+
+
+        </div>
+
+        <p class="muted" style="font-size:0.82rem; margin-top:20px;">
+          Note: These project cards are editable examples. Replace
+          descriptions and screenshots with your real work before publishing.
+        </p>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="section" id="process">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div class="section-label">04 / My Process</div>
+          <h2 class="section-title">
+            From idea to <span class="gradient-text">automation.</span>
+          </h2>
+          <p class="section-description">
+            A clear process helps keep projects organized and focused
+            on the intended outcome.
+          </p>
+        </div>
+
+        <div class="process-grid">
+          <article class="process-card reveal">
+            <div class="process-number">STEP 01</div>
+            <h3>Understand</h3>
+            <p>Clarify the goal, inputs, tools, and expected outcome.</p>
+          </article>
+
+          <article class="process-card reveal">
+            <div class="process-number">STEP 02</div>
+            <h3>Design</h3>
+            <p>Map the workflow logic, integrations, and edge cases.</p>
+          </article>
+
+          <article class="process-card reveal">
+            <div class="process-number">STEP 03</div>
+            <h3>Build & Test</h3>
+            <p>Implement the workflow and test relevant scenarios.</p>
+          </article>
+
+          <article class="process-card reveal">
+            <div class="process-number">STEP 04</div>
+            <h3>Deliver</h3>
+            <p>Provide the agreed workflow and setup documentation.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="contact-box reveal">
+          <div>
+            <div class="section-label">05 / Contact</div>
+            <h2>
+              Let’s automate<br>
+              <span class="gradient-text">something useful.</span>
+            </h2>
+            <p>
+              Have an idea for an AI assistant or business workflow?
+              Let’s discuss the problem and the right solution.
+            </p>
+            <p class="contact-note">
+              Replace the example links with your own profiles before publishing.
+            </p>
+          </div>
+
+          <div class="contact-links">
+            <!-- Replace these example links with your actual profiles -->
+            <a
+              class="contact-link"
+              href="https://www.fiverr.com/s/1EEQNmk"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span>Fiverr Profile</span><span>↗</span>
+            </a>
+
+            <a
+              class="contact-link"
+              href="https://www.upwork.com/freelancers/~01f0d28bd772b3648b?mp_source=share"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span>Upwork Profile</span><span>↗</span>
+            </a>
+            <a
+              class="contact-link"
+              href="https://khamsat.com/user/hagarsayed_ai_dev"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span>Khamsat Profile</span><span>↗</span>
+            </a>
+
+            <!-- Replace with your real email -->
+            <a
+              class="contact-link"
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=hagar.ai.dev@gmail.com" target="_blank" rel="noopener noreferrer"
+            >
+              <span>Email Me</span><span>↗</span>
+            </a>
+
+            <!-- Replace # with your LinkedIn profile -->
+            <a class="contact-link" href="https://www.linkedin.com/in/hagar-sayed-2a79b6349" target="_blank"
+              rel="noopener noreferrer">
+              <span>LinkedIn Profile</span><span>↗</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container footer">
+    <p>
+      © <span id="year"></span> AI Automation Developer Portfolio
+    </p>
+    <p>Built around clarity, practical solutions, and automation.</p>
+  </footer>
+
+  <script>
+    // Automatically update the copyright year.
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+    // Mobile navigation.
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    menuToggle.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("open");
+
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+      menuToggle.textContent = isOpen ? "✕" : "☰";
+    });
+
+    // Close the mobile menu after clicking a link.
+    navLinks.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.textContent = "☰";
+      });
+    });
+
+    // Reveal cards as they enter the viewport.
+    const revealElements = document.querySelectorAll(".reveal");
+
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(
+        (entries, currentObserver) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              currentObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12 }
+      );
+
+      revealElements.forEach((element) => observer.observe(element));
+    } else {
+      revealElements.forEach((element) =>
+        element.classList.add("visible")
+      );
+    }
+
+    // Highlight the current section in the navigation.
+    const sections = document.querySelectorAll("main section[id]");
+    const navItems = document.querySelectorAll(".nav-links a");
+
+    if ("IntersectionObserver" in window) {
+      const sectionObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+
+            navItems.forEach((link) => {
+              const matches =
+                link.getAttribute("href") === "#" + entry.target.id;
+
+              link.classList.toggle("active", matches);
+            });
+          });
+        },
+        { rootMargin: "-30% 0px -60% 0px" }
+      );
+
+      sections.forEach((section) => sectionObserver.observe(section));
+    }
+  </script>
+</body>
+</html>
