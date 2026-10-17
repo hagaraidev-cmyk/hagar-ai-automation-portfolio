@@ -253,6 +253,51 @@
       box-shadow: 0 0 12px #6ee7b777;
     }
 
+    /* Personal identity block at the top of the hero */
+    .profile-identity {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .profile-photo-placeholder {
+      flex: 0 0 94px;
+      width: 94px;
+      height: 94px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      background:
+        linear-gradient(#10182b, #10182b) padding-box,
+        linear-gradient(135deg, var(--purple), var(--cyan)) border-box;
+      box-shadow: 0 8px 30px #0004;
+      color: var(--text);
+      font-size: 1.6rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .profile-identity-copy {
+      min-width: 0;
+    }
+
+    .profile-name {
+      font-size: clamp(1.6rem, 3vw, 2.25rem);
+      line-height: 1.15;
+      letter-spacing: -0.8px;
+      margin: 0 0 6px;
+      color:  var(--purple);
+    }
+
+    .profile-role {
+      color: var(--cyan);
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+    }
+
     .hero h1 {
       margin: 24px 0;
       font-size: clamp(2.8rem, 5.4vw, 5rem);
@@ -872,6 +917,18 @@
     <!-- HERO -->
     <section class="container hero" id="home">
       <div class="hero-content">
+
+        <div class="profile-identity">
+          <!-- <div class="profile-photo-placeholder" aria-label="Photo placeholder for Hagar Sayed">
+            
+          </div> -->
+          <img src="images.png/MyProfilePhoto.png" alt="Hagar Sayed" class="profile-photo-placeholder" />
+          <div class="profile-identity-copy">
+            <h2 class="profile-name">Hagar Sayed</h2>
+            <!-- <p class="profile-role">AI Automation Developer</p> -->
+          </div>
+        </div>
+
         <div class="availability">
           <span class="status-dot"></span>
           AI AUTOMATION DEVELOPER
